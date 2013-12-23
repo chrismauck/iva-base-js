@@ -15,25 +15,6 @@ if( window.navigator.pointerEnabled ) {
     touchDown = "pointerdown";
 }
 
-/*
- * slideObj is provided to map filenames to eve_builder slide indexes.
- * This has been proven to work, but may be obsolete due to an upgrade 
- * within the eve shell. Latest eve.js has a new function:
- * 
- *    navigateToFirstInstanceOfTag(slideTag)
- * 
- * This value is set through builder.
- * The tag name can be any value set by the developer. It could be the
- * filename without extension allowing the flexibilty between platforms.
- *
- */
-window.slideObj = {
-    
-    'a05.html' : 0,
-    'b05.html' : 1
-
-}
-
 ;(function () {
     "use strict";
     var ready_state =   /complete|loaded|interactive/, $, ivaBase, document = window.document,
@@ -179,21 +160,6 @@ ivaBase.prototype = $.fn = {
             } );
         }
     },
-    // navigateToOffshoot: function( goto_html ){
-    //     //return this.each( function(){
-    //     if(platformType === "eve") {
-    //         navigateToOffShoot( window.slideObj[goto_html], false );
-    //     } else {
-    //         alert("Woot");
-    //     }
-    //     //} );
-    // },
-    // postNotification: function( type, param ){
-    //     var note = ( type === "isi" ) ? "eveOpenISIForProduct" : ( type === "pi" ) ? "eveOpenISIForProduct" : type;
-    //     return this.each( function(){
-    //         postNotification( type, param );
-    //     } );
-    // },
     slide_change: function( goto_html, presID ) {
         var slidePath = goto_html;
         return this.each( function(){
@@ -335,7 +301,7 @@ var clickTracking = function( clmType, clmDesc, clmID ) {
 ;(function() {
     var DBUG = false;
 
-    $.fn.append = function(value) {
+    $.fn.append = function(value) {  // Can be included in main prototype, but only included her for plugin
         return this.each(function() {
             if ($.toType(value) === 'string') {
                 if (value) {
