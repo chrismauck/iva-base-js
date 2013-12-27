@@ -133,15 +133,21 @@ ivaBase.prototype = $.fn = {
             this.classList.add( name );
         } );
     },
-    removeClass: function( name ) {
-        return this.each( function() {
-            this.classList.remove( name );
-        } );
+    removeClass: function (name) {
+        if (name){
+            return this.each(function () {
+                this.classList.remove(name);
+            });
+        } else {
+            return this.each(function () { this.className = ''; });
+        }
     },
-    toggleClass: function( name ) {
-        return this.each( function(){
-            this.classList.toggle( name );
-        } );
+    toggleClass: function (name) {
+        return this.each(function (idx){
+            var _this = this, names = name.split(/[ ,]+/).forEach(function(n){
+                _this.classList.toggle(n);
+            });
+        });
     },
 // ==== PLATFORM METHODS
     platform: function( ready_function, delay ) {
